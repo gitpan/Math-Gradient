@@ -8,17 +8,17 @@ Math::Gradient - Perl extension for calculating gradients for colour transitions
 
 =head1 SYNOPSIS
 
-  use Math::Gradient qw(multi_gradient);
-  
-  # make a 100-point colour pallette to smothly transition between 6 RGB values
-  my(@hot_spots) = ([ 0, 255, 0 ], [ 255, 255, 0 ], [ 127, 127, 127 ], [ 0, 0, 255 ], [ 127, 0, 0 ], [ 255, 255, 255 ]);
-  my(@gradient) = multi_gradient(100, @hot_spots);
+use Math::Gradient qw(multi_gradient);
+
+# make a 100-point colour pallette to smothly transition between 6 RGB values
+
+my(@hot_spots) = ([ 0, 255, 0 ], [ 255, 255, 0 ], [ 127, 127, 127 ], [ 0, 0, 255 ], [ 127, 0, 0 ], [ 255, 255, 255 ]);
+
+my(@gradient) = multi_array_gradient(100, @hot_spots);
 
 =head1 DESCRIPTION
 
-  Math::Gradient is used to calculate smooth transitions between numerical values (also known as a "Gradient").
-  I wrote this module mainly to mix colours, but it probably has several other applications.
-  Methods are supported to handle both basic and multiple-point gradients, both with scalars and arrays.
+Math::Gradient is used to calculate smooth transitions between numerical values (also known as a "Gradient"). I wrote this module mainly to mix colours, but it probably has several other applications. Methods are supported to handle both basic and multiple-point gradients, both with scalars and arrays.
 
 =head1 FUNCTIONS
 
@@ -26,44 +26,29 @@ Math::Gradient - Perl extension for calculating gradients for colour transitions
 
 =item gradient($start_value, $end_value, $steps)
 
-This function will return an array of evenly distributed values between $start_value and $end_value.
-All three values supplied should be numeric. $steps should be the number of steps that should occur 
-between the two points; for instance, gradient(0, 10, 4) would return the array (2, 4, 6, 8); the
-4 evenly-distributed steps neccessary to get from 0 to 10, whereas gradient(0, 1, 3) would return
-(0.25, 0.5, 0.75). This is the basest function in the Math::Gradient module and isn't very exciting,
-but all of the other functions below derive their work from it.
+This function will return an array of evenly distributed values between $start_value and $end_value. All three values supplied should be numeric. $steps should be the number of steps that should occur  between the two points; for instance, gradient(0, 10, 4) would return the array (2, 4, 6, 8); the 4 evenly-distributed steps neccessary to get from 0 to 10, whereas gradient(0, 1, 3) would return (0.25, 0.5, 0.75). This is the basest function in the Math::Gradient module and isn't very exciting, but all of the other functions below derive their work from it.
 
 =item array_gradient($start_value, $end_value, $steps)
 
-While gradient() takes numeric values for $start_value and $end_value, array_gradient() takes
-arrayrefs instead. The arrays supplied are expected to be lists of numerical values, and all
-of the arrays should contain the same number of elements. array_gradient() will return a
-list of arrayrefs signifying the gradient of all values on the lists $start_value and
-$end_value.
+While gradient() takes numeric values for $start_value and $end_value, array_gradient() takes arrayrefs instead. The arrays supplied are expected to be lists of numerical values, and all of the arrays should contain the same number of elements. array_gradient() will return a list of arrayrefs signifying the gradient of all values on the lists $start_value and $end_value.
 
-For example, calling array_gradient([ 0, 100, 2 ], [ 100, 50, 70], 3) would return:
-([ 25, 87.5, 19 ], [ 50, 75, 36 ], [ 75, 62.5, 53 ]).
+For example, calling array_gradient([ 0, 100, 2 ], [ 100, 50, 70], 3) would return: ([ 25, 87.5, 19 ], [ 50, 75, 36 ], [ 75, 62.5, 53 ]).
 
 =item multi_gradient($steps, @values)
 
-multi_gradient() calculates multiple gradients at once, returning one list that is an
-even transition between all points, with the values supplied interpolated evenly
-within the list. If $steps is less than the number of entries in the list @values,
-items are deleted from @values instead.
+multi_gradient() calculates multiple gradients at once, returning one list that is an even transition between all points, with the values supplied interpolated evenly within the list. If $steps is less than the number of entries in the list @values, items are deleted from @values instead.
 
-For example, calling multi_gradient(10, 0, 100, 50) would return:
-(0, 25, 50, 75, 100, 90, 80, 70, 60, 50)
+For example, calling multi_gradient(10, 0, 100, 50) would return: (0, 25, 50, 75, 100, 90, 80, 70, 60, 50)
 
 =item multi_array_gradient($steps, @values)
 
-multi_array_gradient() is the same as multi_gradient, except that it works on
-arrayrefs instead of scalars (like array_gradient() is to gradient()).
+multi_array_gradient() is the same as multi_gradient, except that it works on arrayrefs instead of scalars (like array_gradient() is to gradient()).
 
 =back
   
 =cut  
 
-use 5.008;
+use 5.005;
 use strict;
 use warnings;
 
@@ -93,7 +78,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 # Preloaded methods go here.

@@ -1,5 +1,9 @@
 Revision history for Perl extension Math::Gradient.
 
+0.02  Tue Oct 23 12:02:38 2003
+	- fixed a few bits in the documentation, got rid
+		of requirement for perl 5.8.0
+
 0.01  Tue Oct 21 11:47:09 2003
 	- original version; created by h2xs 1.22 with options
 		-AX -n Math::Gradient
