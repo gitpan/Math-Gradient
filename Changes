@@ -1,5 +1,9 @@
 Revision history for Perl extension Math::Gradient.
 
+0.04  Fri Oct 24 16:41:44 2003
+	- still getting used to this PAUSE thing... i forgot
+		to up the version number for 0.03... sorry :-/
+
 0.03  Fri Oct 24 16:24:20 2003
 	- fixed spurious "use 5.008;" in Makefile.PL
 		(cpan #4205)
